@@ -28,7 +28,7 @@ public class Mission {
     private Long rewardValue;
 
     @Column(nullable = false, length = 100)
-    private String condition;
+    private String missionCondition;
 
     @Column(nullable = false, length = 20, unique = true)
     private String missionCode;
