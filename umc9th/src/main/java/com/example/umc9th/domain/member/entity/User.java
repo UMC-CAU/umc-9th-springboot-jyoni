@@ -53,4 +53,7 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dong_id")
     private Dong dong;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserPreferredFood> userPreferredFoodList = new ArrayList<>();
 }
