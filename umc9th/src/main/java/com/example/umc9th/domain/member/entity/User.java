@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -43,4 +45,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Gender gender;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserTermsAgreement> userTermsAgreementList = new ArrayList<>();
 }
