@@ -1,5 +1,6 @@
 package com.example.umc9th.domain.common.entity;
 
+import com.example.umc9th.domain.store.entity.Store;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,5 +23,5 @@ public class Dong {
     private String name;
 
     @OneToMany(mappedBy = "dong")
-    private List<Dong> dongList = new ArrayList<>();
+    private List<Store> storeList = new ArrayList<>();
 }
