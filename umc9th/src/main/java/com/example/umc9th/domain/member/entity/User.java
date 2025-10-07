@@ -1,5 +1,6 @@
 package com.example.umc9th.domain.member.entity;
 
+import com.example.umc9th.domain.common.entity.Dong;
 import com.example.umc9th.domain.member.enums.Gender;
 import com.example.umc9th.domain.member.enums.SnsProvider;
 import jakarta.persistence.*;
@@ -48,4 +49,8 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserTermsAgreement> userTermsAgreementList = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dong_id")
+    private Dong dong;
 }
