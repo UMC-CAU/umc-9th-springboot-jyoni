@@ -1,6 +1,5 @@
 package com.example.umc9th.domain.common.entity;
 
-import com.example.umc9th.domain.member.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,9 +19,6 @@ public class Dong {
     private Long id;
 
     private String name;
-
-    @OneToMany(mappedBy = "dong")
-    private List<User> userList = new ArrayList<>();
 
     @OneToMany(mappedBy = "dong")
     private List<Dong> dongList = new ArrayList<>();
