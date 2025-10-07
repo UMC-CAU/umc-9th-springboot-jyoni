@@ -23,8 +23,8 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(precision = 3, scale = 2, nullable = false)
-    private BigDecimal rating;
+    @Column
+    private Integer rating;
 
     @Column(length = 200)
     private String content;

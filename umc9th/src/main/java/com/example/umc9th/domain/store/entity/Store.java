@@ -35,7 +35,7 @@ public class Store {
     @Column(nullable = false)
     private Boolean isOpen;
 
-    @Column(precision = 3, scale = 2, nullable = false)
+    @Column(precision = 2, scale = 1, nullable = false)
     @Builder.Default
     private BigDecimal averageRating = BigDecimal.ZERO;
 
