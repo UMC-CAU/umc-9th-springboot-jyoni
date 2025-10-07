@@ -1,11 +1,7 @@
 package com.example.umc9th.domain.common.entity;
 
-import com.example.umc9th.domain.member.entity.UserPreferredFood;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -21,10 +17,4 @@ public class Food {
 
     @Column(nullable = false)
     private String name;
-
-    @OneToMany(mappedBy = "food")
-    private List<UserPreferredFood> preferredByUsers = new ArrayList<>();
-
-    @OneToMany(mappedBy = "food")
-    private List<Dong> dongList = new ArrayList<>();
 }
