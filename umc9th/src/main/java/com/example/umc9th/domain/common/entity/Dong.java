@@ -23,4 +23,7 @@ public class Dong {
 
     @OneToMany(mappedBy = "dong")
     private List<User> userList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "dong")
+    private List<Dong> dongList = new ArrayList<>();
 }

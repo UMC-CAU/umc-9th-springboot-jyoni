@@ -24,4 +24,7 @@ public class Food {
 
     @OneToMany(mappedBy = "food")
     private List<UserPreferredFood> preferredByUsers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "food")
+    private List<Dong> dongList = new ArrayList<>();
 }
