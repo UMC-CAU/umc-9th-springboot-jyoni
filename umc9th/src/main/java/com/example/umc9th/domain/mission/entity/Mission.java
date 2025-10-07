@@ -30,7 +30,7 @@ public class Mission {
     @Column(nullable = false, length = 100)
     private String condition;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 20, unique = true)
     private String missionCode;
 
     @Column(nullable = false)
