@@ -21,7 +21,4 @@ public class Dong {
 
     @Column(nullable = false, length = 20)
     private String name;
-
-    @OneToMany(mappedBy = "dong")
-    private List<Store> storeList = new ArrayList<>();
 }
