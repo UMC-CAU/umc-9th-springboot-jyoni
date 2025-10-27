@@ -47,7 +47,8 @@ public class User extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Gender gender;
+    @Builder.Default
+    private Gender gender = Gender.NONE;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserTermsAgreement> userTermsAgreementList = new ArrayList<>();
