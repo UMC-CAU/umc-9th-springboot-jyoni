@@ -1,13 +1,11 @@
 package com.example.umc9th.domain.review.entity;
 
+import com.example.umc9th.domain.common.entity.BaseEntity;
 import com.example.umc9th.domain.member.entity.User;
 import com.example.umc9th.domain.store.entity.Store;
-import com.example.umc9th.domain.store.entity.StoreImage;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Table(name = "review")
-public class Review {
+public class Review extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,9 +26,6 @@ public class Review {
 
     @Column(length = 200)
     private String content;
-
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)

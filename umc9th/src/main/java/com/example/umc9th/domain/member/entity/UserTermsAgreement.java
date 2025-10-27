@@ -1,10 +1,9 @@
 package com.example.umc9th.domain.member.entity;
 
+import com.example.umc9th.domain.common.entity.BaseEntity;
 import com.example.umc9th.domain.terms.entity.Terms;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -12,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Table(name = "userTermsAgreement")
-public class UserTermsAgreement {
+public class UserTermsAgreement extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +27,4 @@ public class UserTermsAgreement {
 
     @Column(nullable = false)
     private boolean isAgreed;
-
-    private LocalDateTime agreedAt;
 }

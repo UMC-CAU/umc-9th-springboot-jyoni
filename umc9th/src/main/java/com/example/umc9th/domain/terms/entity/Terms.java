@@ -1,5 +1,6 @@
 package com.example.umc9th.domain.terms.entity;
 
+import com.example.umc9th.domain.common.entity.BaseEntity;
 import com.example.umc9th.domain.member.entity.UserTermsAgreement;
 import com.example.umc9th.domain.terms.enums.TermType;
 import jakarta.persistence.*;
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Table(name = "terms")
-public class Terms {
+public class Terms extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package com.example.umc9th.domain.member.entity;
 
+import com.example.umc9th.domain.common.entity.BaseEntity;
 import com.example.umc9th.domain.member.enums.MissionParticipateStatus;
 import com.example.umc9th.domain.mission.entity.Mission;
 import jakarta.persistence.*;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Table(name = "mission_participation")
-public class MissionParticipation {
+public class MissionParticipation extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,9 +23,6 @@ public class MissionParticipation {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private MissionParticipateStatus status;
-
-    @Column(nullable = false)
-    private LocalDate requestedAt;
 
     @Column
     private LocalDate completedAt;

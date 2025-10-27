@@ -1,9 +1,8 @@
 package com.example.umc9th.domain.review.entity;
 
+import com.example.umc9th.domain.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -11,7 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Table(name = "review_reply")
-public class ReviewReply {
+public class ReviewReply extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +18,6 @@ public class ReviewReply {
 
     @Column(nullable = false, length = 200)
     private String content;
-
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id", nullable = false)
