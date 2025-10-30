@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +50,9 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     @Builder.Default
     private Gender gender = Gender.NONE;
+
+    @Column
+    private LocalDateTime deletedAt;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserTermsAgreement> userTermsAgreementList = new ArrayList<>();
