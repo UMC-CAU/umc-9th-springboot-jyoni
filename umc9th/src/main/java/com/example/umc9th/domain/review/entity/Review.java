@@ -22,7 +22,7 @@ public class Review extends BaseEntity {
     private Long id;
 
     @Column
-    private Integer rating;
+    private Double rating;
 
     @Column(length = 200)
     private String content;
