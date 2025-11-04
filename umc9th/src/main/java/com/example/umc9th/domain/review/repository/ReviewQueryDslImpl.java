@@ -1,5 +1,6 @@
 package com.example.umc9th.domain.review.repository;
 
+import com.example.umc9th.domain.member.entity.QUser;
 import com.example.umc9th.domain.review.dto.ReviewImageDto;
 import com.example.umc9th.domain.review.dto.ReviewReplyDto;
 import com.example.umc9th.domain.review.dto.ReviewResponse;
@@ -29,18 +30,20 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
         QReview review = QReview.review;
         QReviewImage reviewImage = QReviewImage.reviewImage;
         QReviewReply reviewReply = QReviewReply.reviewReply;
+        QUser user = QUser.user;
 
         return queryFactory
-                .selectFrom(review)
-                .leftJoin(review.images, reviewImage).fetchJoin()
-                .leftJoin(review.reply, reviewReply).fetchJoin()
+                .from(review)
+                .leftJoin(review.user, user)
+                .leftJoin(review.images, reviewImage)
+                .leftJoin(review.reply, reviewReply)
                 .where(predicate)
                 .transform(
                         GroupBy.groupBy(review.id).list(
                                 Projections.constructor(
                                         ReviewResponse.class,
                                         review.id,
-                                        review.user.name,
+                                        user.name,
                                         review.createdAt,
                                         review.rating,
                                         review.content,
