@@ -12,5 +12,5 @@ import java.util.List;
 public interface ParticipationRepository extends JpaRepository<Participation, Long> {
 
     // 진행 중, 진행 완료한 미션 모아서 보는 쿼리 (페이징 포함)
-    Page<Participation> findByUserAndStatusIn(User user, List<ParticipateStatus> statusList, Pageable pageable);
+    Page<Participation> findByUserAndStatus(User user, ParticipateStatus status, Pageable pageable);
 }
