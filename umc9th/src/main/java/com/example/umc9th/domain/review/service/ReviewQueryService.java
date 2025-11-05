@@ -31,6 +31,6 @@ public class ReviewQueryService {
             builder.and(review.rating.between(lowerBound, upperBound));
         }
 
-        return reviewRepository.findMyReviewsByFilter(builder);
+        return reviewRepository.findMyReviewsByFilter(userId, builder);
     }
 }

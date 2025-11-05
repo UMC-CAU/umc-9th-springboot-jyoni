@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ReviewQueryDsl {
 
-    List<ReviewResponse> findMyReviewsByFilter(Predicate predicate);
+    List<ReviewResponse> findMyReviewsByFilter(Long userId, Predicate predicate);
 }

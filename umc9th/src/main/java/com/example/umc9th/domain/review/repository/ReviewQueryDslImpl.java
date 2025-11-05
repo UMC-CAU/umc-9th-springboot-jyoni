@@ -24,7 +24,7 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
     private final EntityManager em;
 
     @Override
-    public List<ReviewResponse> findMyReviewsByFilter(Predicate predicate) {
+    public List<ReviewResponse> findMyReviewsByFilter(Long userId, Predicate predicate) {
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
 
         QReview review = QReview.review;
@@ -37,7 +37,10 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
                 .leftJoin(review.user, user)
                 .leftJoin(review.images, reviewImage)
                 .leftJoin(review.reply, reviewReply)
-                .where(predicate)
+                .where(
+                        review.user.id.eq(userId),
+                        predicate
+                )
                 .transform(
                         GroupBy.groupBy(review.id).list(
                                 Projections.constructor(
