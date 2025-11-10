@@ -2,7 +2,9 @@ package com.example.umc9th.domain.test.controller;
 
 import com.example.umc9th.domain.test.converter.TestConverter;
 import com.example.umc9th.domain.test.dto.response.TestResDTO;
+import com.example.umc9th.domain.test.exception.TestException;
 import com.example.umc9th.global.apiPayload.ApiResponse;
+import com.example.umc9th.global.apiPayload.code.GeneralErrorCode;
 import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @GetMapping("/test")
-    public ApiResponse<TestResDTO.Testing> test() throws Exception {
+//    public ApiResponse<TestResDTO.Testing> test() throws Exception {
+//        GeneralSuccessCode code = GeneralSuccessCode.OK;
+//        return ApiResponse.onSuccess(
+//                code,
+//                TestConverter.toTestingDTO("This is Test!")
+//        );
+//    }
+    public ApiResponse<TestResDTO.Testing> test() {
         GeneralSuccessCode code = GeneralSuccessCode.OK;
-        return ApiResponse.onSuccess(
-                code,
-                TestConverter.toTestingDTO("This is Test!")
-        );
+        throw new TestException(GeneralErrorCode.INTERNAL_SERVER_ERROR);
     }
 
 }
