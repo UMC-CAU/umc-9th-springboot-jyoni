@@ -6,7 +6,13 @@ public class TestConverter {
 
     public static TestResDTO.Testing toTestingDTO(String testing) {
         return TestResDTO.Testing.builder()
-                .testing(testing)
+                .testString(testing)
+                .build();
+    }
+
+    public static TestResDTO.Exception toExceptionDTO(String testing) {
+        return TestResDTO.Exception.builder()
+                .testString(testing)
                 .build();
     }
 }

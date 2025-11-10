@@ -3,12 +3,15 @@ package com.example.umc9th.domain.test.controller;
 import com.example.umc9th.domain.test.converter.TestConverter;
 import com.example.umc9th.domain.test.dto.response.TestResDTO;
 import com.example.umc9th.domain.test.exception.TestException;
+import com.example.umc9th.domain.test.service.query.TestQueryService;
 import com.example.umc9th.global.apiPayload.ApiResponse;
 import com.example.umc9th.global.apiPayload.code.GeneralErrorCode;
 import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,17 +19,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/temp")
 public class TestController {
 
+    private final TestQueryService testQueryService;
+
     @GetMapping("/test")
-//    public ApiResponse<TestResDTO.Testing> test() throws Exception {
-//        GeneralSuccessCode code = GeneralSuccessCode.OK;
-//        return ApiResponse.onSuccess(
-//                code,
-//                TestConverter.toTestingDTO("This is Test!")
-//        );
-//    }
-    public ApiResponse<TestResDTO.Testing> test() {
+    public ApiResponse<TestResDTO.Testing> test() throws Exception {
         GeneralSuccessCode code = GeneralSuccessCode.OK;
-        throw new TestException(GeneralErrorCode.INTERNAL_SERVER_ERROR);
+        return ApiResponse.onSuccess(
+                code,
+                TestConverter.toTestingDTO("This is Test!")
+        );
+    }
+//    public ApiResponse<TestResDTO.Testing> test() {
+//        GeneralSuccessCode code = GeneralSuccessCode.OK;
+//        throw new TestException(GeneralErrorCode.INTERNAL_SERVER_ERROR);
+//    }
+
+    @GetMapping("/exception")
+    public ApiResponse<TestResDTO.Exception> exception(@RequestParam Long flag) {
+        testQueryService.checkFlag(flag);
+
+        GeneralSuccessCode code = GeneralSuccessCode.OK;
+        return ApiResponse.onSuccess(code, TestConverter.toExceptionDTO("This is Test!"));
     }
 
 }
