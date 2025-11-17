@@ -2,6 +2,8 @@ package com.example.umc9th.domain.review.controller;
 
 import com.example.umc9th.domain.review.dto.ReviewResponse;
 import com.example.umc9th.domain.review.service.ReviewQueryService;
+import com.example.umc9th.global.apipayload.ApiResponse;
+import com.example.umc9th.global.apipayload.code.GeneralSuccessCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,12 +20,12 @@ public class ReviewController {
     }
 
     @GetMapping("/my")
-    public ResponseEntity<List<ReviewResponse>> getMyReviews(
+    public ResponseEntity<ApiResponse<List<ReviewResponse>>> getMyReviews(
             @RequestHeader("X-USER-ID") Long userId, // 임시 헤더로 받기
             @RequestParam(required = false) String storeName,  // 가게 이름 필터
             @RequestParam(required = false) Integer ratingGroup   // 별점 필터
     ) {
         List<ReviewResponse> reviews = reviewService.getMyReviews(userId, storeName, ratingGroup);
-        return ResponseEntity.ok(reviews);
+        return ResponseEntity.ok(ApiResponse.onSuccess(GeneralSuccessCode.OK, reviews));
     }
 }
