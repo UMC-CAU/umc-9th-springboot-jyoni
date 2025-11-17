@@ -2,12 +2,9 @@ package com.example.umc9th.domain.test.controller;
 
 import com.example.umc9th.domain.test.converter.TestConverter;
 import com.example.umc9th.domain.test.dto.response.TestResDTO;
-import com.example.umc9th.domain.test.exception.TestException;
 import com.example.umc9th.domain.test.service.query.TestQueryService;
-import com.example.umc9th.global.apiPayload.ApiResponse;
-import com.example.umc9th.global.apiPayload.code.GeneralErrorCode;
-import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
-import lombok.Getter;
+import com.example.umc9th.global.apipayload.ApiResponse;
+import com.example.umc9th.global.apipayload.code.GeneralSuccessCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

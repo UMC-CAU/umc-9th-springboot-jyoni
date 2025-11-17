@@ -1,7 +1,7 @@
 package com.example.umc9th.domain.test.service.query;
 
 import com.example.umc9th.domain.test.exception.TestException;
-import com.example.umc9th.global.apiPayload.exception.code.TestErrorCode;
+import com.example.umc9th.global.apipayload.exception.code.TestErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

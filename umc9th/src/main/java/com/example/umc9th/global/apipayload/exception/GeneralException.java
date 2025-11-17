@@ -1,6 +1,6 @@
-package com.example.umc9th.global.apiPayload.exception;
+package com.example.umc9th.global.apipayload.exception;
 
-import com.example.umc9th.global.apiPayload.code.BaseErrorCode;
+import com.example.umc9th.global.apipayload.code.BaseErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

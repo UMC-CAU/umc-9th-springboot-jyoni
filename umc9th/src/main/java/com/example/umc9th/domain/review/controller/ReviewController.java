@@ -2,8 +2,8 @@ package com.example.umc9th.domain.review.controller;
 
 import com.example.umc9th.domain.review.dto.ReviewResponse;
 import com.example.umc9th.domain.review.service.ReviewQueryService;
-import com.example.umc9th.global.apiPayload.ApiResponse;
-import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
+import com.example.umc9th.global.apipayload.ApiResponse;
+import com.example.umc9th.global.apipayload.code.GeneralSuccessCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,7 @@
-package com.example.umc9th.global.apiPayload;
+package com.example.umc9th.global.apipayload;
 
-import com.example.umc9th.global.apiPayload.code.BaseErrorCode;
-import com.example.umc9th.global.apiPayload.code.BaseSuccessCode;
+import com.example.umc9th.global.apipayload.code.BaseErrorCode;
+import com.example.umc9th.global.apipayload.code.BaseSuccessCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
