@@ -16,6 +16,7 @@ public class MemberConverter {
     public static Member toMember(MemberReqDTO.JoinDTO dto){
         return Member.builder()
                 .name(dto.name())
+                .email(dto.email())
                 .birth(dto.birth())
                 .address(dto.address())
                 .gender(dto.gender())

@@ -1,6 +1,9 @@
 package com.example.umc9th.domain.member.dto;
 
 import com.example.umc9th.domain.member.enums.Gender;
+import com.example.umc9th.global.annotation.ExistFoods;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -8,11 +11,17 @@ import java.util.List;
 public class MemberReqDTO {
 
     public record JoinDTO (
-        String name,
-        String email,
-        Gender gender,
-        LocalDate birth,
-        String address,
-        List<Long> preferCategory
+            @NotBlank
+            String name,
+            @NotNull
+            String email,
+            @NotNull
+            Gender gender,
+            @NotNull
+            LocalDate birth,
+            @NotNull
+            String address,
+            @ExistFoods
+            List<Long> preferCategory
     ){}
 }
