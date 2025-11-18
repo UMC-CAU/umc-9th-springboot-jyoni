@@ -21,11 +21,11 @@ public class ReviewController {
 
     @GetMapping("/my")
     public ResponseEntity<ApiResponse<List<ReviewResponse>>> getMyReviews(
-            @RequestHeader("X-USER-ID") Long userId, // 임시 헤더로 받기
+            @RequestHeader("X-USER-ID") Long memberId, // 임시 헤더로 받기
             @RequestParam(required = false) String storeName,  // 가게 이름 필터
             @RequestParam(required = false) Integer ratingGroup   // 별점 필터
     ) {
-        List<ReviewResponse> reviews = reviewService.getMyReviews(userId, storeName, ratingGroup);
+        List<ReviewResponse> reviews = reviewService.getMyReviews(memberId, storeName, ratingGroup);
         return ResponseEntity.ok(ApiResponse.onSuccess(GeneralSuccessCode.OK, reviews));
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 public class ReviewResponse {
     private Long reviewId;
-    private String userName;
+    private String memberName;
     private LocalDateTime createdAt;
     private Double rating;
     private String content;
@@ -18,9 +18,9 @@ public class ReviewResponse {
     private ReviewReplyDto reviewReply;
 
     @Builder
-    public ReviewResponse(Long reviewId, String userName, LocalDateTime createdAt, Double rating, String content, List<ReviewImageDto> reviewImages, ReviewReplyDto reviewReply) {
+    public ReviewResponse(Long reviewId, String memberName, LocalDateTime createdAt, Double rating, String content, List<ReviewImageDto> reviewImages, ReviewReplyDto reviewReply) {
         this.reviewId = reviewId;
-        this.userName = userName;
+        this.memberName = memberName;
         this.createdAt = createdAt;
         this.rating = rating;
         this.content = content;

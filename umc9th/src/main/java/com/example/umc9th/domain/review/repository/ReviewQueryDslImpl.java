@@ -1,6 +1,6 @@
 package com.example.umc9th.domain.review.repository;
 
-import com.example.umc9th.domain.member.entity.QUser;
+import com.example.umc9th.domain.member.entity.QMember;
 import com.example.umc9th.domain.review.dto.ReviewImageDto;
 import com.example.umc9th.domain.review.dto.ReviewReplyDto;
 import com.example.umc9th.domain.review.dto.ReviewResponse;
@@ -24,21 +24,21 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
     private final EntityManager em;
 
     @Override
-    public List<ReviewResponse> findMyReviewsByFilter(Long userId, Predicate predicate) {
+    public List<ReviewResponse> findMyReviewsByFilter(Long memberId, Predicate predicate) {
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
 
         QReview review = QReview.review;
         QReviewImage reviewImage = QReviewImage.reviewImage;
         QReviewReply reviewReply = QReviewReply.reviewReply;
-        QUser user = QUser.user;
+        QMember member = QMember.member;
 
         return queryFactory
                 .from(review)
-                .leftJoin(review.user, user)
+                .leftJoin(review.member, member)
                 .leftJoin(review.images, reviewImage)
                 .leftJoin(review.reply, reviewReply)
                 .where(
-                        review.user.id.eq(userId),
+                        review.member.id.eq(memberId),
                         predicate
                 )
                 .transform(
@@ -46,7 +46,7 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
                                 Projections.constructor(
                                         ReviewResponse.class,
                                         review.id,
-                                        user.name,
+                                        member.name,
                                         review.createdAt,
                                         review.rating,
                                         review.content,
