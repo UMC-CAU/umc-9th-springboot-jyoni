@@ -1,7 +1,7 @@
 package com.example.umc9th.domain.participation.entity;
 
 import com.example.umc9th.domain.common.entity.BaseEntity;
-import com.example.umc9th.domain.member.entity.User;
+import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.participation.enums.ParticipateStatus;
 import com.example.umc9th.domain.mission.entity.Mission;
 import jakarta.persistence.*;
@@ -29,8 +29,8 @@ public class Participation extends BaseEntity {
     private LocalDate completedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mission_id", nullable = false)

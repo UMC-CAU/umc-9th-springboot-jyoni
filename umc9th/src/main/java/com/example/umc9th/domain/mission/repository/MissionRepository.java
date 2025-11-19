@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 public interface MissionRepository extends JpaRepository<Mission, Long> {
 
@@ -21,5 +22,14 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
         AND :now BETWEEN m.validFrom AND m.validTo
     """)
     Page<Mission> findAvailableMissions(@Param("dong") Dong dong, @Param("now") LocalDate now, Pageable pageable);
+
+    // Active && ValidFrom <= now <= validTo
+    @Query("""
+        SELECT m FROM Mission m
+        WHERE m.id = :id
+        AND m.isActive = true
+        AND :now BETWEEN m.validFrom AND m.validTo
+    """)
+    Optional<Mission> findValidActiveMission(@Param("id") Long id, @Param("now") LocalDate now);
 
 }

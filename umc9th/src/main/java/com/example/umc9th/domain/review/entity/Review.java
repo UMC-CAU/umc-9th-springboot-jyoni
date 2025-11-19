@@ -1,7 +1,7 @@
 package com.example.umc9th.domain.review.entity;
 
 import com.example.umc9th.domain.common.entity.BaseEntity;
-import com.example.umc9th.domain.member.entity.User;
+import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.store.entity.Store;
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,13 +28,14 @@ public class Review extends BaseEntity {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id", nullable = false)
     private Store store;
 
+    @Builder.Default
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<ReviewImage> images = new ArrayList<>();
 

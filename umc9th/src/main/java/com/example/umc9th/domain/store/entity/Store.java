@@ -52,6 +52,7 @@ public class Store extends BaseEntity {
     @JoinColumn(name = "food_id", nullable = false)
     private Food food;
 
+    @Builder.Default
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<StoreImage> images = new ArrayList<>();
 }
