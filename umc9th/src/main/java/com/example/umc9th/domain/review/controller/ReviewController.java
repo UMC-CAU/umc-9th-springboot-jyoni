@@ -13,12 +13,11 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/reviews")
 public class ReviewController {
 
     private final ReviewQueryService reviewService;
 
-    @GetMapping("/my")
+    @GetMapping("/reviews/my")
     public ApiResponse<List<ReviewResDTO.GetMyDTO>> getMyReviews(
             @RequestHeader("X-USER-ID") Long memberId, // 임시 헤더로 받기
             @RequestParam(required = false) String storeName,  // 가게 이름 필터
@@ -27,7 +26,7 @@ public class ReviewController {
         return ApiResponse.onSuccess(ReviewSuccessCode.FOUND, reviewService.getMyReviews(memberId, storeName, ratingGroup));
     }
 
-    @PostMapping("")
+    @PostMapping("/store/{storeId}/reviews")
     public ApiResponse<ReviewResDTO.AddDTO> addReview(
             @RequestHeader("X-USER-ID") Long memberId, // 임시 헤더로 받기
             @RequestBody @Valid ReviewReqDTO.AddDTO dto
