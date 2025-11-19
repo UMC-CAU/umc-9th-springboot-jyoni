@@ -1,11 +1,12 @@
 package com.example.umc9th.domain.review.controller;
 
-import com.example.umc9th.domain.review.dto.ReviewResponse;
+import com.example.umc9th.domain.review.dto.ReviewReqDTO;
 import com.example.umc9th.domain.review.dto.ReviewResDTO;
 import com.example.umc9th.domain.review.service.ReviewQueryService;
 import com.example.umc9th.global.apipayload.ApiResponse;
-import com.example.umc9th.global.apipayload.code.GeneralSuccessCode;
-import org.springframework.http.ResponseEntity;
+import com.example.umc9th.global.apipayload.exception.code.ReviewSuccessCode;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,5 +25,13 @@ public class ReviewController {
             @RequestParam(required = false) Integer ratingGroup   // 별점 필터
     ) {
         return ApiResponse.onSuccess(ReviewSuccessCode.FOUND, reviewService.getMyReviews(memberId, storeName, ratingGroup));
+    }
+
+    @PostMapping("")
+    public ApiResponse<ReviewResDTO.AddDTO> addReview(
+            @RequestHeader("X-USER-ID") Long memberId, // 임시 헤더로 받기
+            @RequestBody @Valid ReviewReqDTO.AddDTO dto
+    ) {
+        return ApiResponse.onSuccess(ReviewSuccessCode.FOUND, reviewService.addReview(memberId, dto));
     }
 }
