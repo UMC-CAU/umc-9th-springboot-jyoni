@@ -1,0 +1,51 @@
+package com.example.umc9th.domain.review.converter;
+
+import com.example.umc9th.domain.member.entity.Member;
+import com.example.umc9th.domain.review.dto.ReviewReqDTO;
+import com.example.umc9th.domain.review.dto.ReviewResDTO;
+import com.example.umc9th.domain.review.entity.Review;
+import com.example.umc9th.domain.review.entity.ReviewImage;
+import com.example.umc9th.domain.store.entity.Store;
+
+import java.util.stream.Collectors;
+
+public class ReviewConverter {
+
+    public static Review toReview(ReviewReqDTO.AddDTO dto, Member member, Store store) {
+        Review review = Review.builder()
+                .member(member)
+                .rating(dto.rating())
+                .content(dto.content())
+                .store(store)
+                .build();
+
+        // 이미지가 있다면 ReviewImage 변환
+        if (dto.reviewImageUrls().size() > 1) {
+            for (String url : dto.reviewImageUrls()) {
+                ReviewImage reviewImage = ReviewImage.builder()
+                        .imageUrl(url)
+                        .review(review)
+                        .build();
+
+                review.getImages().add(reviewImage);
+            }
+        }
+
+        return review;
+    }
+
+    public static ReviewResDTO.AddDTO toAddDTO(Review review) {
+        return ReviewResDTO.AddDTO.builder()
+                .reviewId(review.getId())
+                .storeId(review.getStore().getId())
+                .storeName(review.getStore().getName())
+                .reviewerId(review.getMember().getId())
+                .createdAt(review.getCreatedAt().toString())
+                .rating(review.getRating())
+                .content(review.getContent())
+                .imageUrls(review.getImages().stream()
+                        .map(image -> image.getImageUrl())
+                        .collect(Collectors.toList()))
+                .build();
+    }
+}
