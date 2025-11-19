@@ -24,9 +24,9 @@ public class StoreService {
     private final DongRepository dongRepository;
     private final FoodRepository foodRepository;
 
-    public StoreResDTO.AddDTO addStore(StoreReqDTO.AddDTO dto) {
+    public StoreResDTO.AddDTO addStore(StoreReqDTO.AddDTO dto, Long dongId) {
         // dong 조회
-        Dong dong = dongRepository.findById(dto.dongId())
+        Dong dong = dongRepository.findById(dongId)
                 .orElseThrow(() -> new DongException(DongErrorCode.NOT_FOUND));
 
         // food 조회

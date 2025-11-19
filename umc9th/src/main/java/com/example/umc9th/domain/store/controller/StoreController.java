@@ -6,22 +6,19 @@ import com.example.umc9th.domain.store.service.StoreService;
 import com.example.umc9th.global.apipayload.ApiResponse;
 import com.example.umc9th.global.apipayload.exception.code.StoreSuccessCode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/stores")
 public class StoreController {
 
     private final StoreService storeService;
 
-    @PostMapping("")
+    @PostMapping("/dong/{dongId}/stores")
     public ApiResponse<StoreResDTO.AddDTO> addStore(
-            @RequestBody StoreReqDTO.AddDTO dto
+            @RequestBody StoreReqDTO.AddDTO dto,
+            @PathVariable Long dongId
     ) {
-        return ApiResponse.onSuccess(StoreSuccessCode.FOUND, storeService.addStore(dto));
+        return ApiResponse.onSuccess(StoreSuccessCode.FOUND, storeService.addStore(dto, dongId));
     }
 }

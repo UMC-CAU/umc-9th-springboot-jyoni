@@ -11,7 +11,6 @@ public class StoreReqDTO {
             BigDecimal latitude,
             BigDecimal longitude,
             Boolean isOpen,
-            Long dongId,
             Long foodId,
             List<String> imageUrls
     ) {}
