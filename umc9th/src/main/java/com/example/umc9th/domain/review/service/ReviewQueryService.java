@@ -43,12 +43,12 @@ public class ReviewQueryService {
         return reviewRepository.findMyReviewsByFilter(userId, builder);
     }
 
-    public ReviewResDTO.AddDTO addReview(Long memberId, ReviewReqDTO.AddDTO dto) {
+    public ReviewResDTO.AddDTO addReview(Long memberId, ReviewReqDTO.AddDTO dto, Long storeId) {
         // 사용자 조회
         Member member = memberRepository.findMemberById(memberId);
 
         // 가게 조회
-        Store store = storeRepository.findById(dto.storeId())
+        Store store = storeRepository.findById(storeId)
                 .orElseThrow(() -> new StoreException(StoreErrorCode.NOT_FOUND));
 
         Review review = ReviewConverter.toReview(dto, member, store);

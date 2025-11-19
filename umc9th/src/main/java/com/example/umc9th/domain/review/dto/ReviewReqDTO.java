@@ -11,8 +11,6 @@ public class ReviewReqDTO {
             Double rating,
             @NotNull
             String content,
-            @NotNull
-            Long storeId,
             List<String> reviewImageUrls
     ){}
 }

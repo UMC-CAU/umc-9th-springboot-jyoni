@@ -29,8 +29,9 @@ public class ReviewController {
     @PostMapping("/store/{storeId}/reviews")
     public ApiResponse<ReviewResDTO.AddDTO> addReview(
             @RequestHeader("X-USER-ID") Long memberId, // 임시 헤더로 받기
-            @RequestBody @Valid ReviewReqDTO.AddDTO dto
+            @RequestBody @Valid ReviewReqDTO.AddDTO dto,
+            @PathVariable Long storeId
     ) {
-        return ApiResponse.onSuccess(ReviewSuccessCode.FOUND, reviewService.addReview(memberId, dto));
+        return ApiResponse.onSuccess(ReviewSuccessCode.FOUND, reviewService.addReview(memberId, dto, storeId));
     }
 }
