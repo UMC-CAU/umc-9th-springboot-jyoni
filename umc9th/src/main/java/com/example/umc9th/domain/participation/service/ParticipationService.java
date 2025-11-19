@@ -15,6 +15,8 @@ import com.example.umc9th.global.apipayload.exception.code.MissionErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 @RequiredArgsConstructor
 public class ParticipationService {
@@ -29,7 +31,7 @@ public class ParticipationService {
                 .orElseThrow(() -> new MemberException(MemberErrorCode.NOT_FOUND));
 
         // 미션 조회
-        Mission mission = missionRepository.findById(missionId)
+        Mission mission = missionRepository.findValidActiveMission(missionId, LocalDate.now())
                 .orElseThrow(() -> new MissionException(MissionErrorCode.NOT_FOUND));
 
         Participation participation = ParticipationConverter.toParticipation(member, mission);
