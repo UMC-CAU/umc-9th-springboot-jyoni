@@ -7,6 +7,7 @@ import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.domain.review.entity.ReviewImage;
 import com.example.umc9th.domain.store.entity.Store;
 
+import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
 public class ReviewConverter {
@@ -20,7 +21,7 @@ public class ReviewConverter {
                 .build();
 
         // 이미지가 있다면 ReviewImage 변환
-        if (dto.reviewImageUrls().size() > 1) {
+        if (dto.reviewImageUrls() != null && !dto.reviewImageUrls().isEmpty()) {
             for (String url : dto.reviewImageUrls()) {
                 ReviewImage reviewImage = ReviewImage.builder()
                         .imageUrl(url)
@@ -35,12 +36,14 @@ public class ReviewConverter {
     }
 
     public static ReviewResDTO.AddDTO toAddDTO(Review review) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return ReviewResDTO.AddDTO.builder()
                 .reviewId(review.getId())
                 .storeId(review.getStore().getId())
                 .storeName(review.getStore().getName())
                 .reviewerId(review.getMember().getId())
-                .createdAt(review.getCreatedAt().toString())
+                .createdAt(review.getCreatedAt().format(formatter))
                 .rating(review.getRating())
                 .content(review.getContent())
                 .imageUrls(review.getImages().stream()

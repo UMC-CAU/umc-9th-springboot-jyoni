@@ -21,7 +21,7 @@ public class StoreConverter {
                 .build();
 
         // 이미지가 있다면 StoreImage 변환
-        if (dto.imageUrls().size() > 1) {
+        if (dto.imageUrls() != null && !dto.imageUrls().isEmpty()) {
             for (String url : dto.imageUrls()) {
                 StoreImage storeImage = StoreImage.builder()
                         .imageUrl(url)
