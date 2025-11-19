@@ -12,7 +12,6 @@ public class MissionReqDTO {
             String missionCode,
             boolean isActive,
             String validFrom,
-            String validTo,
-            Long storeId
+            String validTo
     ) {}
 }
