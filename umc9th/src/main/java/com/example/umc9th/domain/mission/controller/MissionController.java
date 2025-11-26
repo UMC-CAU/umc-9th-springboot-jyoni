@@ -16,7 +16,7 @@ public class MissionController {
     private final MissionService missionService;
 
     @PostMapping("/store/{storeId}/mission")
-    public ApiResponse<MissionResDTO.AddDTO> addMission(
+    public ApiResponse<MissionResDTO.MissionPreviewDTO> addMission(
             @RequestBody @Valid MissionReqDTO.AddDTO dto,
             @PathVariable Long storeId
     ) {

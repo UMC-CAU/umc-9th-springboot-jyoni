@@ -23,8 +23,8 @@ public class MissionConverter {
                 .build();
     }
 
-    public static MissionResDTO.AddDTO toAddDTO(Mission mission) {
-        return MissionResDTO.AddDTO.builder()
+    public static MissionResDTO.MissionPreviewDTO toPreviewDTO(Mission mission) {
+        return MissionResDTO.MissionPreviewDTO.builder()
                 .id(mission.getId())
                 .rewardType(mission.getRewardType().toString())
                 .rewardValue(mission.getRewardValue())

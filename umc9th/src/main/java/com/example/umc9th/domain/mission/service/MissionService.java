@@ -19,7 +19,7 @@ public class MissionService {
     private final StoreRepository storeRepository;
     private final MissionRepository missionRepository;
 
-    public MissionResDTO.AddDTO addMission(MissionReqDTO.AddDTO dto, Long storeId) {
+    public MissionResDTO.MissionPreviewDTO addMission(MissionReqDTO.AddDTO dto, Long storeId) {
         // 가게 조회
         Store store = storeRepository.findById(storeId)
                 .orElseThrow(() -> new StoreException(StoreErrorCode.NOT_FOUND));
@@ -27,6 +27,6 @@ public class MissionService {
         Mission mission = MissionConverter.toMission(dto, store);
         missionRepository.save(mission);
 
-        return MissionConverter.toAddDTO(mission);
+        return MissionConverter.toPreviewDTO(mission);
     }
 }

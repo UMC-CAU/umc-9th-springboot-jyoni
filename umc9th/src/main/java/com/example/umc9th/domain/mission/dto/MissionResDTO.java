@@ -5,7 +5,7 @@ import lombok.Builder;
 public class MissionResDTO {
 
     @Builder
-    public record AddDTO (
+    public record MissionPreviewDTO (
             Long id,
             String rewardType,
             Long rewardValue,
