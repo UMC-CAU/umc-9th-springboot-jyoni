@@ -29,7 +29,7 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
     private final StoreRepository storeRepository;
 
     @Override
-    public List<ReviewResDTO.GetMyDTO> getMyReviews(Long userId, String storeName, Integer ratingGroup) {
+    public List<ReviewResDTO.GetMyDTO> getReviewsByDetailFilter(Long userId, String storeName, Integer ratingGroup) {
         QReview review = QReview.review;
         BooleanBuilder builder = new BooleanBuilder();
 

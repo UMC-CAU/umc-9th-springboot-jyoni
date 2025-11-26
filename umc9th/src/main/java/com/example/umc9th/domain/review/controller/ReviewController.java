@@ -5,6 +5,7 @@ import com.example.umc9th.domain.review.dto.ReviewResDTO;
 import com.example.umc9th.domain.review.service.ReviewQueryService;
 import com.example.umc9th.global.apipayload.ApiResponse;
 import com.example.umc9th.global.apipayload.exception.code.ReviewSuccessCode;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +18,13 @@ public class ReviewController implements ReviewControllerDocs {
 
     private final ReviewQueryService reviewService;
 
-    @GetMapping("/reviews/my")
-    public ApiResponse<List<ReviewResDTO.GetMyDTO>> getMyReviews(
+    @GetMapping("/reviews/detail")
+    public ApiResponse<List<ReviewResDTO.GetMyDTO>> getReviewsByDetailFilter(
             @RequestHeader("X-USER-ID") Long memberId, // 임시 헤더로 받기
             @RequestParam(required = false) String storeName,  // 가게 이름 필터
             @RequestParam(required = false) Integer ratingGroup   // 별점 필터
     ) {
-        return ApiResponse.onSuccess(ReviewSuccessCode.FOUND, reviewService.getMyReviews(memberId, storeName, ratingGroup));
+        return ApiResponse.onSuccess(ReviewSuccessCode.FOUND, reviewService.getReviewsByDetailFilter(memberId, storeName, ratingGroup));
     }
 
     @PostMapping("/store/{storeId}/reviews")

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ReviewQueryService {
 
-    List<ReviewResDTO.GetMyDTO> getMyReviews(Long userId, String storeName, Integer ratingGroup);
+    List<ReviewResDTO.GetMyDTO> getReviewsByDetailFilter(Long userId, String storeName, Integer ratingGroup);
     ReviewResDTO.AddDTO addReview(Long memberId, ReviewReqDTO.AddDTO dto, Long storeId);
     // 검색 API
 //    List<Review> searchReview(String filter, String type) throws Exception;
