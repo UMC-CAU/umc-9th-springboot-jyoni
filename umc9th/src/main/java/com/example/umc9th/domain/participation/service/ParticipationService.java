@@ -31,7 +31,7 @@ public class ParticipationService {
                 .orElseThrow(() -> new MemberException(MemberErrorCode.NOT_FOUND));
 
         // 미션 조회
-        Mission mission = missionRepository.findValidActiveMission(missionId, LocalDate.now())
+        Mission mission = missionRepository.findValidActiveMissionByMemberId(missionId, LocalDate.now())
                 .orElseThrow(() -> new MissionException(MissionErrorCode.NOT_FOUND));
 
         Participation participation = ParticipationConverter.toParticipation(member, mission);
