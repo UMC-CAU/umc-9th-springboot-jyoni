@@ -12,4 +12,5 @@ public interface ReviewQueryService {
     // 검색 API
 //    List<Review> searchReview(String filter, String type) throws Exception;
     ReviewResDTO.ReviewPreViewListDTO findReview(String storeName, Integer page);
+    ReviewResDTO.ReviewPreViewListDTO getMyReviews(Long userId, Integer page);
 }

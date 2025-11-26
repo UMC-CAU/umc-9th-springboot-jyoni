@@ -71,4 +71,14 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
 
         return ReviewConverter.toReviewPreviewListDTO(result);
     }
+
+    @Override
+    public ReviewResDTO.ReviewPreViewListDTO getMyReviews(Long userId, Integer page) {
+        Member member = memberRepository.findMemberById(userId);
+
+        PageRequest pageRequest = PageRequest.of(page, 5);
+        Page<Review> result = reviewRepository.findAllByMember(member, pageRequest);
+
+        return ReviewConverter.toReviewPreviewListDTO(result);
+    }
 }
