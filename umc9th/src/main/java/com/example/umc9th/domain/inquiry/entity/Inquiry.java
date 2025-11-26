@@ -2,7 +2,7 @@ package com.example.umc9th.domain.inquiry.entity;
 
 import com.example.umc9th.domain.common.entity.BaseEntity;
 import com.example.umc9th.domain.inquiry.enums.InquiryType;
-import com.example.umc9th.domain.member.entity.User;
+import com.example.umc9th.domain.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,9 +33,10 @@ public class Inquiry extends BaseEntity {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
+    @Builder.Default
     @OneToMany(mappedBy = "inquiry", cascade = CascadeType.ALL)
     private List<InquiryImage> images = new ArrayList<>();
 }

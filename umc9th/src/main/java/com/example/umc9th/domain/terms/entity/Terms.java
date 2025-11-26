@@ -1,7 +1,7 @@
 package com.example.umc9th.domain.terms.entity;
 
 import com.example.umc9th.domain.common.entity.BaseEntity;
-import com.example.umc9th.domain.member.entity.UserTermsAgreement;
+import com.example.umc9th.domain.member.entity.MemberTermsAgreement;
 import com.example.umc9th.domain.terms.enums.TermType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -38,6 +38,7 @@ public class Terms extends BaseEntity {
 
     private LocalDate effectiveDate;
 
+    @Builder.Default
     @OneToMany(mappedBy = "terms", cascade = CascadeType.ALL)
-    private List<UserTermsAgreement> userTermsAgreementList = new ArrayList<>();
+    private List<MemberTermsAgreement> memberTermsAgreementList = new ArrayList<>();
 }

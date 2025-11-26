@@ -1,9 +1,10 @@
 package com.example.umc9th.domain.review.dto;
 
-import com.example.umc9th.domain.review.entity.ReviewImage;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
+@Builder
 public class ReviewImageDto {
 
     private Long id;
