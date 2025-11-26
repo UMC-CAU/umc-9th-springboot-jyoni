@@ -76,7 +76,7 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
     public ReviewResDTO.ReviewPreViewListDTO getMyReviews(Long userId, Integer page) {
         Member member = memberRepository.findMemberById(userId);
 
-        PageRequest pageRequest = PageRequest.of(page, 5);
+        PageRequest pageRequest = PageRequest.of(page, 10);
         Page<Review> result = reviewRepository.findAllByMember(member, pageRequest);
 
         return ReviewConverter.toReviewPreviewListDTO(result);
