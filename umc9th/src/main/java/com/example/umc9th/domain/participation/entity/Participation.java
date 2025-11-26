@@ -35,4 +35,9 @@ public class Participation extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mission_id", nullable = false)
     private Mission mission;
+
+    public void complete(LocalDate completedAt) {
+        this.completedAt = completedAt;
+        this.status = ParticipateStatus.COMPLETED;
+    }
 }

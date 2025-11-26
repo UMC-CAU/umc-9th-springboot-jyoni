@@ -25,7 +25,7 @@ public class ParticipationService {
     private final MissionRepository missionRepository;
     private final ParticipationRepository participationRepository;
 
-    public ParticipationResDTO.AddDTO addParticipation(Long memberId, Long missionId) {
+    public ParticipationResDTO.PreviewDTO addParticipation(Long memberId, Long missionId) {
         // 사용자 조회
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new MemberException(MemberErrorCode.NOT_FOUND));
@@ -37,6 +37,19 @@ public class ParticipationService {
         Participation participation = ParticipationConverter.toParticipation(member, mission);
         participationRepository.save(participation);
 
-        return ParticipationConverter.toAddDTO(participation);
+        return ParticipationConverter.toPreviewDTO(participation);
+    }
+
+    public ParticipationResDTO.PreviewDTO completeParticipation(Long memberId, Long missionId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new MemberException(MemberErrorCode.NOT_FOUND));
+
+        Mission mission = missionRepository.findById(missionId)
+                        .orElseThrow(() -> new MissionException(MissionErrorCode.NOT_FOUND));
+
+        Participation participation = participationRepository.findByMemberAndMission(member, mission);
+        participation.complete(LocalDate.now());
+
+        return ParticipationConverter.toPreviewDTO(participation);
     }
 }

@@ -16,8 +16,8 @@ public class ParticipationConverter {
                 .build();
     }
 
-    public static ParticipationResDTO.AddDTO toAddDTO(Participation participation) {
-        return ParticipationResDTO.AddDTO.builder()
+    public static ParticipationResDTO.PreviewDTO toPreviewDTO(Participation participation) {
+        return ParticipationResDTO.PreviewDTO.builder()
                 .id(participation.getId())
                 .memberId(participation.getMember().getId())
                 .participateStatus(participation.getStatus().name())

@@ -1,5 +1,7 @@
 package com.example.umc9th.domain.mission.service;
 
+import com.example.umc9th.domain.member.entity.Member;
+import com.example.umc9th.domain.member.repository.MemberRepository;
 import com.example.umc9th.domain.mission.converter.MissionConverter;
 import com.example.umc9th.domain.mission.dto.MissionReqDTO;
 import com.example.umc9th.domain.mission.dto.MissionResDTO;
@@ -7,7 +9,9 @@ import com.example.umc9th.domain.mission.entity.Mission;
 import com.example.umc9th.domain.mission.repository.MissionRepository;
 import com.example.umc9th.domain.store.entity.Store;
 import com.example.umc9th.domain.store.repository.StoreRepository;
+import com.example.umc9th.global.apipayload.exception.MemberException;
 import com.example.umc9th.global.apipayload.exception.StoreException;
+import com.example.umc9th.global.apipayload.exception.code.MemberErrorCode;
 import com.example.umc9th.global.apipayload.exception.code.StoreErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,6 +26,7 @@ public class MissionService {
 
     private final StoreRepository storeRepository;
     private final MissionRepository missionRepository;
+    private final MemberRepository memberRepository;
 
     public MissionResDTO.MissionPreviewDTO addMission(MissionReqDTO.AddDTO dto, Long storeId) {
         // 가게 조회
