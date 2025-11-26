@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class ReviewController {
+public class ReviewController implements ReviewControllerDocs {
 
     private final ReviewQueryService reviewService;
 
@@ -33,5 +33,15 @@ public class ReviewController {
             @PathVariable Long storeId
     ) {
         return ApiResponse.onSuccess(ReviewSuccessCode.FOUND, reviewService.addReview(memberId, dto, storeId));
+    }
+
+    // 가게의 리뷰 목록 조회
+    @GetMapping("/reviews")
+    public ApiResponse<ReviewResDTO.ReviewPreViewListDTO> getReviews(
+            @RequestParam String storeName,
+            @RequestParam Integer page
+    ) {
+        ReviewSuccessCode code = ReviewSuccessCode.FOUND;
+        return ApiResponse.onSuccess(code, reviewService.findReview(storeName, page));
     }
 }

@@ -1,59 +1,15 @@
 package com.example.umc9th.domain.review.service;
 
-import com.example.umc9th.domain.member.entity.Member;
-import com.example.umc9th.domain.member.repository.MemberRepository;
-import com.example.umc9th.domain.review.converter.ReviewConverter;
 import com.example.umc9th.domain.review.dto.ReviewReqDTO;
 import com.example.umc9th.domain.review.dto.ReviewResDTO;
-import com.example.umc9th.domain.review.entity.QReview;
-import com.example.umc9th.domain.review.entity.Review;
-import com.example.umc9th.domain.review.repository.ReviewRepository;
-import com.example.umc9th.domain.store.entity.Store;
-import com.example.umc9th.domain.store.repository.StoreRepository;
-import com.example.umc9th.global.apipayload.exception.StoreException;
-import com.example.umc9th.global.apipayload.exception.code.StoreErrorCode;
-import com.querydsl.core.BooleanBuilder;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class ReviewQueryService {
+public interface ReviewQueryService {
 
-    private final MemberRepository memberRepository;
-    private final ReviewRepository reviewRepository;
-    private final StoreRepository storeRepository;
-
-    public List<ReviewResDTO.GetMyDTO> getMyReviews(Long userId, String storeName, Integer ratingGroup) {
-        QReview review = QReview.review;
-        BooleanBuilder builder = new BooleanBuilder();
-
-        if (storeName != null) {
-            builder.and(review.store.name.eq(storeName));
-        }
-        if (ratingGroup != null) {
-            double lowerBound = ratingGroup;
-            double upperBound = Math.min(ratingGroup + 0.9, 5.0);
-
-            builder.and(review.rating.between(lowerBound, upperBound));
-        }
-
-        return reviewRepository.findMyReviewsByFilter(userId, builder);
-    }
-
-    public ReviewResDTO.AddDTO addReview(Long memberId, ReviewReqDTO.AddDTO dto, Long storeId) {
-        // 사용자 조회
-        Member member = memberRepository.findMemberById(memberId);
-
-        // 가게 조회
-        Store store = storeRepository.findById(storeId)
-                .orElseThrow(() -> new StoreException(StoreErrorCode.NOT_FOUND));
-
-        Review review = ReviewConverter.toReview(dto, member, store);
-        reviewRepository.save(review);
-
-        return ReviewConverter.toAddDTO(review);
-    }
+    List<ReviewResDTO.GetMyDTO> getMyReviews(Long userId, String storeName, Integer ratingGroup);
+    ReviewResDTO.AddDTO addReview(Long memberId, ReviewReqDTO.AddDTO dto, Long storeId);
+    // 검색 API
+//    List<Review> searchReview(String filter, String type) throws Exception;
+    ReviewResDTO.ReviewPreViewListDTO findReview(String storeName, Integer page);
 }
