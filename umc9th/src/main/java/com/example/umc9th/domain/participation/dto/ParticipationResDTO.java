@@ -5,7 +5,7 @@ import lombok.Builder;
 public class ParticipationResDTO {
 
     @Builder
-    public record AddDTO(
+    public record PreviewDTO(
             Long id,
             Long memberId,
             String participateStatus,
