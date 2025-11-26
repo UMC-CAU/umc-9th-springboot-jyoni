@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-public class MissionController {
+public class MissionController implements MissionControllerDocs {
 
     private final MissionService missionService;
 
@@ -21,5 +21,13 @@ public class MissionController {
             @PathVariable Long storeId
     ) {
         return ApiResponse.onSuccess(MissionSuccessCode.FOUND, missionService.addMission(dto, storeId));
+    }
+
+    @GetMapping("/store/{storeId}/mission")
+    public ApiResponse<MissionResDTO.MissionPreviewListDTO> getMissionByStore(
+            @PathVariable Long storeId,
+            @RequestParam Integer page
+    ) {
+        return ApiResponse.onSuccess(MissionSuccessCode.FOUND, missionService.getMissionByStore(storeId, page));
     }
 }
