@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/missions")
-public class ParticipationController {
+public class ParticipationController implements ParticipationControllerDocs{
 
     private final ParticipationService participationService;
 
@@ -22,6 +22,14 @@ public class ParticipationController {
             @PathVariable Long missionId
     ) {
         return ApiResponse.onSuccess(ParticipationSuccessCode.FOUND, participationService.addParticipation(memberId, missionId));
+    }
+
+    @GetMapping("/participation/ongoing")
+    public ApiResponse<MissionResDTO.MissionPreviewListDTO> getOngoingParticipation(
+            @RequestHeader("X-USER-ID") Long memberId, // 임시: 실제 인증 방식과 연동 예정
+            @RequestParam Integer page
+    ) {
+        return ApiResponse.onSuccess(MissionSuccessCode.FOUND, participationService.getOngoingParticipation(memberId, page));
     }
 
     @PatchMapping("/mission/{missionId}/complete")

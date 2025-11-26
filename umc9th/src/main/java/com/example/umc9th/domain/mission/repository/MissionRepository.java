@@ -36,11 +36,4 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
     Optional<Mission> findValidActiveMissionByMemberId(@Param("id") Long id, @Param("now") LocalDate now);
 
     Page<Mission> findAllByStore(Store store, PageRequest pageRequest);
-
-    @Query("""
-        SELECT m FROM Mission m
-        WHERE m.isActive = true
-        AND :now BETWEEN m.validFrom AND m.validTo
-    """)
-    Page<Mission> findValidActiveMission(PageRequest pageRequest, @Param("now") LocalDate now);
 }

@@ -32,11 +32,4 @@ public class MissionController implements MissionControllerDocs {
     ) {
         return ApiResponse.onSuccess(MissionSuccessCode.FOUND, missionService.getMissionByStore(storeId, page));
     }
-
-    @GetMapping("/mission/ongoing")
-    public ApiResponse<MissionResDTO.MissionPreviewListDTO> getMissionByStore(
-            @RequestParam Integer page
-    ) {
-        return ApiResponse.onSuccess(MissionSuccessCode.FOUND, missionService.getMissionOngoing(page));
-    }
 }

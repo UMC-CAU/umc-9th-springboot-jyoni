@@ -48,11 +48,4 @@ public class MissionService {
 
         return MissionConverter.toMissionPreviewList(result);
     }
-
-    public MissionResDTO.MissionPreviewListDTO getMissionOngoing(Integer page) {
-        PageRequest pageRequest = PageRequest.of(page, 10);
-        Page<Mission> result = missionRepository.findValidActiveMission(pageRequest, LocalDate.now());
-
-        return MissionConverter.toMissionPreviewList(result);
-    }
 }
